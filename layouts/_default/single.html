@@ -1,0 +1,14 @@
+{{ define "main" }}
+<article class="post">
+  <h1 class="post-title">{{ .Title }}</h1>
+  <p class="meta">
+    <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006-01-02" }}</time>
+    {{ with .Params.author }} · {{ . }}{{ end }}
+    {{ with .Params.tags }} · {{ delimit . " · " }}{{ end }}
+    {{ with .ReadingTime }} · {{ . }} 分钟{{ end }}
+  </p>
+  {{ with .Params.cover }}<img class="cover" src="{{ . | relURL }}" alt="{{ $.Title }}">{{ end }}
+  <div class="content">{{ .Content }}</div>
+</article>
+<p class="back"><a href="{{ "posts/" | relURL }}">← 全部文章</a></p>
+{{ end }}

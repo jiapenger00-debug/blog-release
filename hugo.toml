@@ -1,0 +1,23 @@
+baseURL = "https://jiapenger00-debug.github.io/blog-release/"
+languageCode = "zh-cn"
+defaultContentLanguage = "zh"
+title = "Hermes 技术博客"
+enableRobotsTXT = true
+paginate = 20
+
+[params]
+  description = "AI Agent · 多智能体协作 · 工程实践"
+  author = "jiapenger00-debug"
+
+[markup]
+  [markup.highlight]
+    style = "github-dark"
+    noClasses = false
+  [markup.goldmark.renderer]
+    unsafe = true
+  [markup.tableOfContents]
+    startLevel = 2
+    endLevel = 3
+
+[outputs]
+  home = ["HTML", "RSS"]

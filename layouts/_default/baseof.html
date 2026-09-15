@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} · {{ site.Title }}{{ end }}</title>
 <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ site.Params.description }}{{ end }}">
-{{ with .Params.cover }}<meta property="og:image" content="{{ . | relURL }}">{{ end }}
+{{ with .Params.cover }}<meta property="og:image" content="{{ partial "imgurl.html" . | safeURL }}">{{ end }}
 <link rel="stylesheet" href="{{ "css/site.css" | relURL }}">
 {{ with .OutputFormats.Get "rss" }}<link rel="alternate" type="application/rss+xml" href="{{ .Permalink }}" title="{{ site.Title }}">{{ end }}
 </head>

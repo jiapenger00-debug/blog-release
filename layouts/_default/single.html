@@ -7,7 +7,7 @@
     {{ with .Params.tags }} · {{ delimit . " · " }}{{ end }}
     {{ with .ReadingTime }} · {{ . }} 分钟{{ end }}
   </p>
-  {{ with .Params.cover }}<img class="cover" src="{{ . | relURL }}" alt="{{ $.Title }}">{{ end }}
+  {{ with .Params.cover }}<img class="cover" src="{{ partial "imgurl.html" . }}" alt="{{ $.Title }}">{{ end }}
   <div class="content">{{ .Content }}</div>
 </article>
 <p class="back"><a href="{{ "posts/" | relURL }}">← 全部文章</a></p>

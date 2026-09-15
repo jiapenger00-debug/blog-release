@@ -1,0 +1,7 @@
+{{- /* 正文内联图渲染钩子：把站点根路径图片补上 baseURL 的路径前缀。
+     不写这个钩子时，正文 ![alt](/images/x.png) 会原样输出 /images/x.png，
+     在项目站（/blog-release/）部署后解析到域名根 → 404。
+     src 上的 safeURL：Go 模板会拦掉 data: 等 scheme，这里放行（正文作者即仓库维护者，
+     且 goldmark 已开 unsafe，作者本就可在正文写任意 HTML）。 */ -}}
+{{- $dest := partial "imgurl.html" .Destination -}}
+<img src="{{ $dest | safeURL }}" alt="{{ .Text }}"{{ with .Title }} title="{{ . }}"{{ end }} loading="lazy">

@@ -1,0 +1,15 @@
+{{- /* imgurl.html — 图片 URL 统一解析（单一事实来源）
+     用法：{{ partial "imgurl.html" "/images/x.png" }}  →  /blog-release/images/x.png
+     规则：
+       1. 外链（http:// https:// //）与 data: URI 原样返回；
+       2. 其余一律视为「站点根路径」，先去掉前导 /（Hugo 的 relURL 对带前导斜杠的
+          输入不会补 baseURL 的路径前缀，见 hugo 0.135 实测），再交 relURL 补前缀。
+       注意：站点子路径由 hugo.toml 的 baseURL 决定，不要把 /blog-release 写进正文。 */ -}}
+{{- $dest := . | default "" -}}
+{{- if eq $dest "" -}}
+{{- "" -}}
+{{- else if or (hasPrefix $dest "http://") (hasPrefix $dest "https://") (hasPrefix $dest "//") (hasPrefix $dest "data:") -}}
+{{- $dest -}}
+{{- else -}}
+{{- $dest | strings.TrimPrefix "/" | relURL -}}
+{{- end -}}
